@@ -12,15 +12,18 @@ class App extends React.Component {
         "health":1,
         "happiness":1,
         "savings":1000,
-        "stocks":[new Stock("Pear","PEAR",50.23,2,0)]
-      }
+        "stocks":[new Stock("Pear","PEAR",50.23,2,0)],
+      },
+      "dialogue":[]
     };
   }
-  tick(){
+  progress(){
     return () => {
       let dat = this.state;
       dat.time += 1;
       this.setState(dat);
+      let dialogue
+      this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
     }
   }
   calculateDate(time) {
@@ -40,6 +43,8 @@ class App extends React.Component {
     return (month + " 1st, " + year);
   }
   render(){
+
+    
     console.log(this.state);
     return (
       <div className="App">
@@ -47,11 +52,10 @@ class App extends React.Component {
         <Header />
         <div className="body">
           <div className="log-window">
-            <p>&gt;Welcome to (name)!</p>
-            <p>&gt;The date is {this.calculateDate(this.state.time)}</p>
+            {this.state.dialogue}
           </div>
-          <button className="start-button" onClick={this.tick()}>
-            <h1>Start</h1>  
+          <button className="start-button" onClick={this.progress()}>
+            <h1>Progress</h1>  
           </button>
         </div>
         
