@@ -2,8 +2,8 @@ import Stock from "./stocks";
 class Market {
     constructor(){
         this.stocks = {
-            "PEAR":new Stock("Pear Technology","PEAR",50.37,"Pear is an innovative technology company, maker of the Pear Home Computer","High","Low")
-        
+            "PEAR":new Stock("Pear Technology","PEAR",50.37,"Pear is an innovative technology company, maker of the Pear Home Computer","High","Low"),
+            "GOLD":new Stock("Gold Investing!","GOLD",200.37,"GOLD IS LITERALLY A PRECIOUS METAL LMAO","High","Low")
         }
     }
     tick(){
