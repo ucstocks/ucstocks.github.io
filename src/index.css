@@ -42,13 +42,16 @@ code {
   border-radius: 25px;
 }
 .log-window {
-  background-color: gray;
+  display: flex;
+  background-color: #DCE5E5;
   height: 500px;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10px;
   margin-bottom: 10px;
+  flex-direction: column;
+  align-items: left;
 }
   
 

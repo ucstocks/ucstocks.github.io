@@ -31,6 +31,22 @@ class App extends React.Component {
       this.setState(dat);
     }
   }
+  calculateDate(time) {
+    let month = "";
+    let year = Math.floor(time/4 + 2005);
+    if (time % 4 == 0) {
+      month="January";
+    } else if (time % 4 == 1) {
+      month = "April";
+    } else if (time % 4 == 2) {
+      month = "July";
+    } else if (time % 4 == 3) {
+      month = "October"
+    }
+    
+  
+    return (month + " 1st, " + year);
+  }
   render(){
     return (
       <div className="App">
@@ -38,7 +54,8 @@ class App extends React.Component {
         <Header name={this.state.name}/>
         <div className="body">
           <div className="log-window">
-          
+            <p>&gt;Welcome to (name)!</p>
+            <p>&gt;The date is {this.calculateDate(this.state.time)}</p>
           </div>
           <button className="start-button" onClick={this.tick()}>
             <h1>Start</h1>  
@@ -50,6 +67,8 @@ class App extends React.Component {
       </div>
     );
   }
+  
 }
 
+  
 export default App;
