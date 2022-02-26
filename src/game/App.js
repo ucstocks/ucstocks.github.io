@@ -8,22 +8,20 @@ class App extends React.Component {
     this.market = new Market();
     this.state = {
       "time":0,
+      "date":"January 1st, 2005",
       "name":"Ali",
       "stats":{
         "health":1,
         "happiness":1,
         "savings":1000,
-<<<<<<< HEAD
-        "stocks":[new Stock("Pear","PEAR",50.23,2,0)],
-      },
-      "dialogue":[]
-=======
         "assets":0,
         "stocks":{
           "PEAR":2
         }
-      }
->>>>>>> refs/remotes/origin/main
+      },
+        
+      "dialogue":[]
+        
     };
     this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
   }
@@ -34,9 +32,9 @@ class App extends React.Component {
       this.market.tick();
       let val = this.market.netValue(dat.stats.stocks);
       dat.stats.assets = val;
-      this.setState(dat);
-      let dialogue
       this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
+      dat.date = this.calculateDate(this.state.time);
+      this.setState(dat);
     }
   }
   calculateDate(time) {
@@ -56,16 +54,14 @@ class App extends React.Component {
     return (month + " 1st, " + year);
   }
   render(){
-<<<<<<< HEAD
 
     
     console.log(this.state);
-=======
->>>>>>> refs/remotes/origin/main
     return (
       <div className="App">
         
-        <Header name={this.state.name}/>
+        <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
+        assets={Math.ceil(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
           <div className="log-window">
             {this.state.dialogue}
@@ -75,6 +71,13 @@ class App extends React.Component {
           </button>
           <p>{this.state.time}</p>
           <p>Stocks assets: {this.state.stats.assets}</p>
+        </div>
+        <div className="stats-contianer">
+          <p>Health: {this.state.stats.health}</p>
+          <p>Happiness: {this.state.stats.happiness}</p>
+          <p>Savings Account: {this.state.stats.savings}</p>
+          <p></p>
+
         </div>
         
       </div>

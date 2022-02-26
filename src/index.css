@@ -20,10 +20,11 @@ code {
   height: 100px;
   width: 100%;
   flex-direction: row;
+  justify-content: left;
+  background-color: orange;
 }
 .title-container {
   display: flex;
-  background-color: orange;
   max-height: 100%;
   width: 100%;
   justify-content: center;
