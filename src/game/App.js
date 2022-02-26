@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import Header from './Components/header.js';
-import Stock from "./classes/stocks.js";
+import Market from "./classes/market.js";
 class App extends React.Component {
   constructor(){
     super();
+    this.market = new Market();
     this.state = {
       "time":0,
       "name":"Ali",
@@ -12,15 +13,27 @@ class App extends React.Component {
         "health":1,
         "happiness":1,
         "savings":1000,
+<<<<<<< HEAD
         "stocks":[new Stock("Pear","PEAR",50.23,2,0)],
       },
       "dialogue":[]
+=======
+        "assets":0,
+        "stocks":{
+          "PEAR":2
+        }
+      }
+>>>>>>> refs/remotes/origin/main
     };
+    this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
   }
   progress(){
     return () => {
       let dat = this.state;
       dat.time += 1;
+      this.market.tick();
+      let val = this.market.netValue(dat.stats.stocks);
+      dat.stats.assets = val;
       this.setState(dat);
       let dialogue
       this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
@@ -43,13 +56,16 @@ class App extends React.Component {
     return (month + " 1st, " + year);
   }
   render(){
+<<<<<<< HEAD
 
     
     console.log(this.state);
+=======
+>>>>>>> refs/remotes/origin/main
     return (
       <div className="App">
         
-        <Header />
+        <Header name={this.state.name}/>
         <div className="body">
           <div className="log-window">
             {this.state.dialogue}
@@ -57,6 +73,8 @@ class App extends React.Component {
           <button className="start-button" onClick={this.progress()}>
             <h1>Progress</h1>  
           </button>
+          <p>{this.state.time}</p>
+          <p>Stocks assets: {this.state.stats.assets}</p>
         </div>
         
       </div>
