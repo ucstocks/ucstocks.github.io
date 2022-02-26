@@ -8,11 +8,15 @@ function App() {
       
       <Header />
       <div className="body">
-        <p>(welcome message)</p>
+        <div className="log-window">
+        
+        </div>
         <button className="start-button">
           <h1>Start</h1>  
         </button>
       </div>
+      
+      
 
 
     </div>

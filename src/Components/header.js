@@ -10,9 +10,6 @@ function Header() {
             <div className="title-container">
                 <h1 className="title">(Name)</h1>
             </div>
-            <div className="options-container" >
-                
-            </div>
         </div>
         
     )
