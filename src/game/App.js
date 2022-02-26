@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       "popup":false,
       "time":0,
+      "date":"January 1st, 2005",
       "name":"Ali",
       "stats":{
         "health":1,
@@ -20,17 +21,22 @@ class App extends React.Component {
           "PEAR":2,
           "GOLD":5
         }
-      }
+      },
+        
+      "dialogue":[]
+        
     };
     this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
   }
-  tick(){
+  progress(){
     return () => {
       let dat = this.state;
       dat.time += 1;
       this.market.tick();
       let val = this.market.netValue(dat.stats.stocks);
       dat.stats.assets = val;
+      this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
+      dat.date = this.calculateDate(this.state.time);
       this.setState(dat);
       this.togglePop();
     }
@@ -57,20 +63,21 @@ class App extends React.Component {
     });
    };
   render(){
+
+    
+    console.log(this.state);
     return (
       <div className="App">
         {this.state.seen ? <PopUp market={this.market} stocks={this.state.stats.stocks} toggle={this.togglePop} /> : null}
-        <Header name={this.state.name}/>
+        <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
+        assets={Math.ceil(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
           <div className="log-window">
-            <p>&gt;Welcome to (name)!</p>
-            <p>&gt;The date is {this.calculateDate(this.state.time)}</p>
+            {this.state.dialogue}
           </div>
-          <button className="start-button" onClick={this.tick()}>
-            <h1>Start</h1>  
+          <button className="start-button" onClick={this.progress()}>
+            <h1>Progress</h1>  
           </button>
-          <p>{this.state.time}</p>
-          <p>Stocks assets: {this.state.stats.assets}</p>
         </div>
       </div>
     );

@@ -1,3 +1,6 @@
+let history = [{
+    "PEAR":[1.41,2.57,1.91,1.75,2.09,2.56,2.86,3.89,4.23]
+}];
 class Stock{
     constructor(name,ticker,price,description,marketCap,priceExpense){
         this.name = name;
