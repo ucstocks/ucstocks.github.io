@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import '../index.css';
 
-class Header extends React.component {
-    render() {
-        <div id="header-container">
-            
+
+
+function Header() {
+    return (
+        <div className="header-container" >
+            <h1>[Name]</h1>
         </div>
-    }
+    )
 }
+export default Header;
