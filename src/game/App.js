@@ -2,12 +2,19 @@ import React from 'react';
 import './App.css';
 import Header from './Components/header.js';
 import Market from "./classes/market.js";
+import Events from "./classes/events.js";
 import PopUp from "./Components/popup.js"; 
 class App extends React.Component {
   constructor(){
     super();
+    this.events = new Events();
     this.market = new Market();
     this.state = {
+      "gameState":"news", /*Gamestates include
+      await
+      stocks
+      news
+      */
       "popup":false,
       "time":0,
       "date":"Sep. 1, 2005",
@@ -54,16 +61,25 @@ class App extends React.Component {
   }
   progress(){
     return () => {
-      let dat = this.state;
-      dat.time += 1;
-      this.market.tick(dat.time);
-      let val = this.market.netValue(dat.stats.stocks);
-      dat.stats.assets = val;
-      this.state.dialogue.push(<p><b>3 months have passed</b></p>);
-      this.state.dialogue.push(<hr/>);
-      dat.date = this.calculateDate(this.state.time);
-      this.setState(dat);
-      this.togglePop();
+      if(this.state.gameState === "news"){
+        let dat = this.state;
+        dat.time += 1;
+        this.market.tick(dat.time);
+        let val = this.market.netValue(dat.stats.stocks);
+        dat.stats.assets = val;
+        this.state.dialogue.push(<p><b>3 months have passed</b></p>);
+        this.state.dialogue.push(<hr/>);
+        this.state.dialogue = [...this.state.dialogue,this.events.handleEvents(dat.time)];
+        dat.date = this.calculateDate(this.state.time);
+        this.state.gameState = "await";
+        this.setState(dat);
+      }
+      else if(this.state.gameState === "await"){
+        this.state.gameState = "stocks";
+        this.setState(this.state);
+        this.togglePop();
+      }
+      
     }
   }
   calculateDate(time) {
@@ -84,6 +100,7 @@ class App extends React.Component {
     return (month + " 1, " + year);
   }
   togglePop = () => {
+    this.state.gameState = "news";
     this.setState({
      seen: !this.state.seen
     });
