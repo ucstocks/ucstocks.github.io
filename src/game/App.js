@@ -19,7 +19,7 @@ class App extends React.Component {
         "assets":0,
         "stocks":{
           "PEAR":2,
-          "GOLP":5
+          "GOLP":5,
         }
       },
         
@@ -89,12 +89,12 @@ class App extends React.Component {
       <div className="App">
         {this.state.seen ? <PopUp costAfter={this.costAfter.bind(this)} doPurchase={this.doPurchase.bind(this)} savings={this.state.stats.savings} market={this.market} stocks={this.state.stats.stocks} toggle={this.togglePop} /> : null}
         <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
-        assets={Math.ceil(this.state.stats.assets * 100) / 100} date={this.state.date}/>
+        assets={Math.round(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
           <div className="log-window">
             {this.state.dialogue}
           </div>
-          <button className="start-button" onClick={this.progress()}>
+          <button className="btn btn-block btn-primary start-button" onClick={this.progress()}>
             <h1>Progress</h1>  
           </button>
         </div>
