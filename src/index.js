@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './libs/bootstrap.min.css';
 import App from './game/App';
 
 ReactDOM.render(
