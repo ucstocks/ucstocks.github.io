@@ -4,12 +4,13 @@ function Header(props) {
     const healthbarStyling = {
         backgroundColor: "green",
         width: String(props.health * 100) + "%",
+        borderRadius: "90px"
     }
     return (
         <div className="header-container">
             <div className="title-container">
                 <img src="site-logo.png"/>
-                <h1 className="title">The Wage-Worker of Wallstreet</h1>
+                <h1 className="title">The Wage Worker of Wall Street</h1>
             </div>
             <div className="health-container">
                 <h3 className="health">Health:</h3>
