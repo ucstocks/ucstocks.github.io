@@ -19,7 +19,7 @@ class App extends React.Component {
         "assets":0,
         "stocks":{
           "PEAR":2,
-          "GOLP":5
+          "GOLP":5,
         }
       },
         
