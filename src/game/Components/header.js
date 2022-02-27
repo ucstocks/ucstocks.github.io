@@ -12,14 +12,6 @@ function Header(props) {
                 <img src="site-logo.png"/>
                 <h1 className="title">The Wage Worker of Wall Street</h1>
             </div>
-            <div className="health-container">
-                <h3 className="health">Health:</h3>
-                <div className="health-bar">
-                    <div style={healthbarStyling}>
-
-                    </div>
-                </div>
-            </div>
             <div className = "money-container">
                 <h3 className="money">Money:</h3>
                 <h3>${props.money}</h3>
