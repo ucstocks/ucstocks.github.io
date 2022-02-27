@@ -47,7 +47,6 @@ code {
   width: 90%;
 }
 .log-window {
-  display: flex;
   background-color: #DCE5E5;
   height: 500px;
   width: 90%;
@@ -55,8 +54,10 @@ code {
   margin-right: 5%;
   margin-top: 10px;
   margin-bottom: 10px;
-  flex-direction: column-reverse;
+  padding:25px;
   overflow-y: scroll;
+  text-align:left;
+
 }
 .health-bar {
   display: flex;

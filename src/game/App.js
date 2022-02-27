@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       "popup":false,
       "time":0,
-      "date":"January 1st, 2005",
+      "date":"Sep. 1, 2005",
       "name":"Ali",
       "stats":{
         "health":1,
@@ -23,7 +23,11 @@ class App extends React.Component {
         }
       },
         
-      "dialogue":[<p>Welcome to Wahoo Finance!</p>, ]
+      "dialogue":[<p> 9/01/05 <b>&gt;</b> Welcome to the Wage-Worker of Wallstreet by Wahoo Finance!</p>,
+      <p>9/01/05 <b>&gt;</b> The date is Sep. 1, 2005</p>,
+      <p>9/01/05 <b>&gt;</b> Your name is Ali, and you live and work within New York.</p>,
+      <p>9/01/05 <b>&gt;</b> While in real life you have to manage bills, Ali's AI will handle that for you. You just have to decide how to responsibly invest his money.</p>,<p>9/1/05 <b>&gt;</b> Throughout this game, you'll be making decisions on what stocks to buy and sell.</p>,
+      <p>9/01/05 <b>&gt;</b> Press the blue "Progress" button to move forward three months.</p>]
         
     };
     this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
@@ -55,27 +59,29 @@ class App extends React.Component {
       this.market.tick(dat.time);
       let val = this.market.netValue(dat.stats.stocks);
       dat.stats.assets = val;
-      this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
+      this.state.dialogue.push(<p><b>3 months have passed</b></p>);
+      this.state.dialogue.push(<hr/>);
       dat.date = this.calculateDate(this.state.time);
       this.setState(dat);
       this.togglePop();
     }
   }
   calculateDate(time) {
+    time += 3;
     let month = "";
     let year = Math.floor(time/4 + 2005);
     if (time % 4 == 0) {
-      month="January";
+      month="Jan.";
     } else if (time % 4 == 1) {
-      month = "April";
+      month = "Apr.";
     } else if (time % 4 == 2) {
-      month = "July";
+      month = "Jul.";
     } else if (time % 4 == 3) {
-      month = "October"
+      month = "Oct."
     }
     
   
-    return (month + " 1st, " + year);
+    return (month + " 1, " + year);
   }
   togglePop = () => {
     this.setState({
@@ -91,10 +97,10 @@ class App extends React.Component {
         <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
         assets={Math.round(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
-          <div className="log-window">
+          <div className="log-window container">
             {this.state.dialogue}
           </div>
-          <button className="btn btn-block btn-primary start-button" onClick={this.progress()}>
+          <button className="btn btn-block btn-primary start-button container" onClick={this.progress()}>
             <h1>Progress</h1>  
           </button>
         </div>

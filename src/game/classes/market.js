@@ -12,6 +12,7 @@ let history = {
 class Market {
     constructor(){
         this.stocks = {
+<<<<<<< HEAD
             "PEAR":new Stock("Pear Technology","PEAR",history["PEAR"][0],"Pear is an innovative technology company, maker of the Pear Home Computer."),
             "GOLP":new Stock("Gold Investing!","GOLP",history["GOLP"][0],"Pete’s Gold is a commodity trader, allowing you to sell gold rather than shares in a company. It traditionally grows slowly, most as a guard against inflation."),
             "BRWL":new Stock("Brawlmart!","BRWL",history["BRWL"][0],"Brawlmart is a supermarket store catering to martial artists, boxers, and other people who enjoy hitting things."),
@@ -20,6 +21,10 @@ class Market {
             "CINH":new Stock("Cinema House!","CINH",history["CINH"][0],"Cinema House is a company that specializes in VHS and DVD renting for movies to watch at home. They’re an established company that have been around for quite some time with moderate success."),
             "PROF":new Stock("The Bank of Proffit!","PROF",history["PROF"][0],"This bank doesn’t just care about profits. It also cares about... costs? Banks are sometimes used for long-term investments due to their standard steady growth with the market."),
             "JEFF":new Stock("Johnson&Jeffery!","JEFF",history["JEFF"][0],"A massive medicine company, Johnson&James is working to keep everyone healthy... but mostly make money."),
+=======
+            "PEAR":new Stock("Pear Technology","PEAR",history["PEAR"][0],"Pear is an innovative technology company, maker of the Pear Home Computer"),
+            "GOLP":new Stock("Gold Investing!","GOLP",history["GOLP"][0],"GOLD IS LITERALLY A PRECIOUS METAL LMAO")
+>>>>>>> 98589b591ca18db190e2d5194e19454fabb6ef25
         }
     }
     tick(time){
