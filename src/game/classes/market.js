@@ -13,7 +13,6 @@ class Market {
     tick(time){
         let keys = Object.keys(this.stocks);
         for(let i = 0;i<keys.length;i++){
-            console.log(this.stocks[keys[i]]);
             this.stocks[keys[i]].tick(time);
         }
     }

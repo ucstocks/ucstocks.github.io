@@ -11,23 +11,52 @@ export default class PopUp extends Component {
           }
       }
   }
-methodGenerator(ticker,diff){
+methodGenerator(ticker,diff,min,max){
     return () => {
         let dat = this.state;
         dat.decisions[ticker] += diff;
+        if(dat.decisions[ticker] < min){
+            dat.decisions[ticker] -= diff;
+            return;
+        }
+        if(dat.decisions[ticker] > max){
+            dat.decisions[ticker] -= diff;
+            return;
+        }
         this.setState(dat);
     }
 }
-methodInput(ticker){
+methodInput(ticker,min,max){
     return (e) => {
         let dat = this.state;
+        let before = dat.decisions[ticker];
         dat.decisions[ticker] = parseInt(e.target.value);
+        if(dat.decisions[ticker] < min){
+            dat.decisions[ticker] = before
+            return;
+        }
+        if(dat.decisions[ticker] > max){
+            dat.decisions[ticker] = before;
+            return;
+        }
+        this.setState(dat);
+    }
+}
+sellTheThings(callback){
+    return () => {
+        callback();
+        let keys = Object.keys(this.state.decisions);
+        let dat = this.state;
+        for(let i = 0;i<keys.length;i++){
+            dat.decisions[keys[i]] = 0;
+        }
         this.setState(dat);
     }
 }
 render() {
   let market = this.props.market;
   let stocks = this.props.stocks;
+  let savings = this.props.savings;
 
   let stockKeys = Object.keys(market.stocks);
   for(let i = 0;i<stockKeys.length;i++){
@@ -45,37 +74,31 @@ render() {
       let ticker = keys[i];
       let price =  Math.round(market.stocks[ticker].price * 100) / 100;
       let previousPrice =  Math.round(market.stocks[ticker].previousPrice * 100) / 100;
+
+      let minShares = this.props.stocks[ticker] * -1;
+      let maxShares = Math.floor((savings - this.props.costAfter(this.state.decisions)) / market.stocks[ticker].price + this.state.decisions[keys[i]]);
       info.push(
-          <tbody key={i}>
-                <tr>
-                    <th scope="row">{ticker}</th>
-                    <td>{"$" + price}</td>
-                    <td>{format((price / previousPrice) * 100 - 100) + "%"}</td>
-                    <td>{stocks[ticker]}</td>
-                    <td>{"$" + (format(price-previousPrice))}</td>
-                </tr>
-          </tbody>
+        <tbody key={i}>
+            <tr>
+                <th scope="row">{ticker}</th>
+                <td>{"$" + price}</td>
+                <td>{format((price / previousPrice) * 100 - 100) + "%"}</td>
+                <td>{stocks[ticker]}</td>
+                <td>{"$" + (format(price-previousPrice))}</td>
+                <td><button className="btn btn-danger buy-sell" onClick={this.methodGenerator(keys[i],-1,minShares,maxShares)}>-</button>&nbsp;<button className="btn btn-success buy-sell" onClick={this.methodGenerator(keys[i],1,minShares,maxShares)}>+</button></td>
+                <td><input min={minShares} max={maxShares} type="number" value={this.state.decisions[keys[i]]} onChange={this.methodInput(keys[i],minShares,maxShares)}/></td>
+                <td>{format(market.stocks[keys[i]].price * this.state.decisions[keys[i]])}</td>
+            </tr>
+        </tbody>
       )
   }
-  let decisions = [];
-    for(let i = 0;i<keys.length;i++){
-        decisions.push(
-            <tbody key={i}>
-                <tr>
-                    <td><button className="btn btn-danger buy-sell" onClick={this.methodGenerator(keys[i],-1)}>-</button>&nbsp;<button className="btn btn-success buy-sell" onClick={this.methodGenerator(keys[i],1)}>+</button></td>
-                    <td><input type="number" value={this.state.decisions[keys[i]]} onChange={this.methodInput(keys[i])}/></td>
-                    <td>{format(market.stocks[keys[i]].price * this.state.decisions[keys[i]])}</td>
-                </tr>
-            </tbody>
-        )
-    }
   return (
    <div className="modal">
         <div className="modal_content">
             <p>3 months have passed! Here's what happened to the following stocks. Feel free to buy and sell your shares.</p>
 
             <div className="row">
-                <div className="col-7">
+                <div className="col-12">
                     <table className="table">
                         <thead>
                             <tr>
@@ -84,25 +107,18 @@ render() {
                             <th scope="col">% Change</th>
                             <th scope="col">Shares</th>
                             <th scope="col">$ Change</th>
-                            </tr>
-                        </thead>
-                        {info}
-                    </table>
-                </div>
-                <div className="col-5">
-                <table className="table">
-                        <thead>
-                            <tr>
                             <th scope="col">Buy / Sell</th>
                             <th scope="col">Share Change</th>
                             <th scope="col">$ Change</th>
                             </tr>
                         </thead>
-                        {decisions}
+                        {info}
                     </table>
                 </div>
             </div>
-            <button className="close btn btn-success" onClick={this.handleClick}>I'm done viewing stocks</button>
+            <h3>{format(savings)} --&gt; {format(savings - this.props.costAfter(this.state.decisions))}</h3>
+            <button className="close btn btn-primary" onClick={this.sellTheThings(this.props.doPurchase(this.state.decisions))}>Confirm Transaction</button>&nbsp;
+            <button className="close btn btn-success" onClick={this.handleClick}>Leave Trading Screen</button>
         </div>
    </div>
   );

@@ -8,7 +8,7 @@ function Header(props) {
     return (
         <div className="header-container">
             <div className="title-container">
-                <h1 className="title">Wahoo Finance</h1>
+                <h1 className="title">The Wage-Worker of Wallstreet</h1>
             </div>
             <div className="health-container">
                 <h3 className="health">Health:</h3>
