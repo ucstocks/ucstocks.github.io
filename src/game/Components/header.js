@@ -4,6 +4,7 @@ function Header(props) {
     const healthbarStyling = {
         backgroundColor: "green",
         width: String(props.health * 100) + "%",
+        borderRadius: "90px"
     }
     return (
         <div className="header-container">
