@@ -7,8 +7,8 @@ class Events{
     }
     genericEvent(time){
         let events = [];
-        events.push(<p>{this.calculateDate(time)} <b>&gt;</b> Ali has earned $12 dollars</p>);
-        events.push(<p>{this.calculateDate(time)} <b>&gt;</b> Ali is goofy.</p>);
+        //events.push(<p>{this.calculateDate(time)} <b>&gt;</b> Ali has earned $12 dollars</p>);
+        //events.push(<p>{this.calculateDate(time)} <b>&gt;</b> Ali is goofy.</p>);
         return events;
     }
     handleEvents(time){

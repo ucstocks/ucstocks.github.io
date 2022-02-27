@@ -13,13 +13,13 @@ class Market {
     constructor(){
         this.stocks = {
             "PEAR":new Stock("Pear Technology","PEAR",history["PEAR"][0],"Pear is an innovative technology company, maker of the Pear Home Computer."),
-            "GOLP":new Stock("Gold Investing!","GOLP",history["GOLP"][0],"Pete’s Gold is a commodity trader, allowing you to sell gold rather than shares in a company. It traditionally grows slowly, most as a guard against inflation."),
-            "BRWL":new Stock("Brawlmart!","BRWL",history["BRWL"][0],"Brawlmart is a supermarket store catering to martial artists, boxers, and other people who enjoy hitting things."),
-            "RASP":new Stock("Raspberry Technology!","RASP",history["RASP"][0],"Raspberry is a company that makes phones and portable music players, noted for their corporate design and sturdiness."),
-            "BIGM":new Stock("BIG MONEY!","BIGM",history["BIGM"][0],"BigMoney is a mysterious company promising to double its earnings in only a few quarters, though hardly anyone knows what they actually sell..."),
-            "CINH":new Stock("Cinema House!","CINH",history["CINH"][0],"Cinema House is a company that specializes in VHS and DVD renting for movies to watch at home. They’re an established company that have been around for quite some time with moderate success."),
-            "PROF":new Stock("The Bank of Proffit!","PROF",history["PROF"][0],"This bank doesn’t just care about profits. It also cares about... costs? Banks are sometimes used for long-term investments due to their standard steady growth with the market."),
-            "JEFF":new Stock("Johnson&Jeffery!","JEFF",history["JEFF"][0],"A massive medicine company, Johnson&James is working to keep everyone healthy... but mostly make money."),
+            "GOLP":new Stock("Gold Investing","GOLP",history["GOLP"][0],"Pete’s Gold is a commodity trader, allowing you to sell gold rather than shares in a company. It traditionally grows slowly, mostly as a guard against inflation."),
+            "BRWL":new Stock("Brawlmart","BRWL",history["BRWL"][0],"Brawlmart is a supermarket store catering to martial artists, boxers, and other people who enjoy hitting things."),
+            "RASP":new Stock("Raspberry Technology","RASP",history["RASP"][0],"Raspberry is a company that makes phones and portable music players, noted for their corporate design and sturdiness."),
+            "BIGM":new Stock("BIG MONEY","BIGM",history["BIGM"][0],"BigMoney is a mysterious company promising to double its earnings in only a few quarters, though hardly anyone knows what they actually sell..."),
+            "CINH":new Stock("Cinema House","CINH",history["CINH"][0],"Cinema House is a company that specializes in VHS and DVD renting for movies to watch at home. They’re an established company that have been around for quite some time with moderate success."),
+            "PROF":new Stock("The Bank of Proffit","PROF",history["PROF"][0],"This bank doesn’t just care about profits. It also cares about... costs? Banks are sometimes used for long-term investments due to their standard steady growth with the market."),
+            "JEFF":new Stock("Johnson&Jeffery","JEFF",history["JEFF"][0],"A massive medicine company, Johnson&James is working to keep everyone healthy... but mostly make money."),
         }
     }
     tick(time){
@@ -38,7 +38,7 @@ class Market {
         let tickers = Object.keys(stocks);
         for(let i = 0;i < tickers.length;i++){
             let ticker = tickers[i];
-            val = stocks[ticker] * this.stocks[ticker].price;
+            val += stocks[ticker] * this.stocks[ticker].price;
         }
         return val;
     }

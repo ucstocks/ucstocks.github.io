@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import format from "../functions/format";
 export default class PopUp extends Component {
   handleClick = () => {
    this.props.toggle();
@@ -53,6 +54,9 @@ sellTheThings(callback){
         this.setState(dat);
     }
 }
+componentDidMount(){
+    window.$('[data-bs-toggle="tooltip"]').tooltip();
+}
 render() {
   let market = this.props.market;
   let stocks = this.props.stocks;
@@ -67,9 +71,6 @@ render() {
 
   let info = [];
   let keys = Object.keys(stocks);
-  function format(num){
-      return Math.round(num * 100) / 100
-  }
   for(let i = 0;i<keys.length;i++){
       let ticker = keys[i];
       let price =  Math.round(market.stocks[ticker].price * 100) / 100;
@@ -80,7 +81,7 @@ render() {
       info.push(
         <tbody key={i}>
             <tr>
-                <th scope="row">{ticker}</th>
+                <th scope="row" className="hoverable" data-html="true" data-bs-toggle="tooltip" data-toggle="tooltip" data-placement="top" title={`<h3>${market.stocks[ticker].name}</h3><p>${market.stocks[ticker].description}</p>`}>{ticker}</th>
                 <td>{"$" + price}</td>
                 <td>{format((price / previousPrice) * 100 - 100) + "%"}</td>
                 <td>{stocks[ticker]}</td>
@@ -96,6 +97,7 @@ render() {
    <div className="modal">
         <div className="modal_content">
             <p>3 months have passed! Here's what happened to the following stocks. Feel free to buy and sell your shares.</p>
+            <p>You can bring your mouse over a ticker to read a brief description of the stock.</p>
 
             <div className="row">
                 <div className="col-12">

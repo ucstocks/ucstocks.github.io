@@ -4,9 +4,12 @@ import './index.css';
 import './libs/bootstrap.min.css';
 import App from './game/App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+window.addEventListener('load', () => {
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+})
