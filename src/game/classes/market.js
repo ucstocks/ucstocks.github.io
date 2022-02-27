@@ -6,8 +6,8 @@ let history = {
 class Market {
     constructor(){
         this.stocks = {
-            "PEAR":new Stock("Pear Technology","PEAR",history["PEAR"][0],"Pear is an innovative technology company, maker of the Pear Home Computer","High","Low"),
-            "GOLP":new Stock("Gold Investing!","GOLP",history["GOLP"][0],"GOLD IS LITERALLY A PRECIOUS METAL LMAO","High","Low")
+            "PEAR":new Stock("Pear Technology","PEAR",history["PEAR"][0],"Pear is an innovative technology company, maker of the Pear Home Computer"),
+            "GOLP":new Stock("Gold Investing!","GOLP",history["GOLP"][0],"GOLD IS LITERALLY A PRECIOUS METAL LMAO")
         }
     }
     tick(time){
