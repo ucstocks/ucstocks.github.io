@@ -154,7 +154,7 @@ class App extends React.Component {
         dat.stats.assets = dat.market.netValue(dat.stats.stocks);
         this.setState(dat);
       }
-      else if(this.state.time === 1){
+      else if(this.state.time === 8){
         let dat = this.state;
         dat.gameState = "gameOver";
         dat.dialogue.push(

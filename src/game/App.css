@@ -33,3 +33,10 @@ input{
   cursor:pointer;
   text-decoration:underline;
 }
+.news{
+  font-family:'Times New Roman', Times, serif;
+  margin-left:80px;
+  margin-right:80px;
+  background:#f1f1f1;
+  padding:20px;
+}
