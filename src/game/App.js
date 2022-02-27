@@ -27,6 +27,12 @@ class App extends React.Component {
         "stocks":{
           "PEAR":2,
           "GOLP":5,
+          "BRWL":0,
+          "RASP":0,
+          "BIGM":0,
+          "CINH":0,
+          "PROF":0,
+          "JEFF":0
         }
       },
         
