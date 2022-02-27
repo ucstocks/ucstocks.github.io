@@ -19,7 +19,7 @@ class App extends React.Component {
         "assets":0,
         "stocks":{
           "PEAR":2,
-          "GOLD":5
+          "GOLP":5
         }
       },
         
@@ -32,7 +32,7 @@ class App extends React.Component {
     return () => {
       let dat = this.state;
       dat.time += 1;
-      this.market.tick();
+      this.market.tick(dat.time);
       let val = this.market.netValue(dat.stats.stocks);
       dat.stats.assets = val;
       this.state.dialogue.unshift(<p>The date is {this.calculateDate(this.state.time)}</p>);
