@@ -8,7 +8,7 @@ function Header(props) {
     return (
         <div className="header-container">
             <div className="title-container">
-                <h1 className="title">Wahoo Finance</h1>
+                <img src="site-logo.png"></img>
             </div>
             <div className="health-container">
                 <h3 className="health">Health:</h3>
