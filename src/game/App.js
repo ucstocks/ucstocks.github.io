@@ -69,17 +69,7 @@ class App extends React.Component {
           <button className="start-button" onClick={this.progress()}>
             <h1>Progress</h1>  
           </button>
-          <p>{this.state.time}</p>
-          <p>Stocks assets: {this.state.stats.assets}</p>
         </div>
-        <div className="stats-contianer">
-          <p>Health: {this.state.stats.health}</p>
-          <p>Happiness: {this.state.stats.happiness}</p>
-          <p>Savings Account: {this.state.stats.savings}</p>
-          <p></p>
-
-        </div>
-        
       </div>
     );
   }
