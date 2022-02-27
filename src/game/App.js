@@ -23,7 +23,7 @@ class App extends React.Component {
         }
       },
         
-      "dialogue":[]
+      "dialogue":[<p>Welcome to Wahoo Finance!</p>, ]
         
     };
     this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
