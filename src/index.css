@@ -31,6 +31,10 @@ code {
   justify-content: center;
   align-items:center;
 }
+
+.title-container > img{
+  max-height:100%;
+}
 .options-container {
   display: flex;
   background-color: gray;
