@@ -23,10 +23,30 @@ class App extends React.Component {
         }
       },
         
-      "dialogue":[]
+      "dialogue":[<p>Welcome to Wahoo Finance!</p>, ]
         
     };
     this.state.stats.assets = this.market.netValue(this.state.stats.stocks);
+  }
+  costAfter(decision){
+    let cost = 0;
+    let keys = Object.keys(decision);
+    for(let i = 0;i < keys.length;i++){
+      cost += decision[keys[i]] * this.market.stocks[keys[i]].price
+    }
+    return cost;
+  }
+  doPurchase(decision){
+    return () => {
+      let keys = Object.keys(decision);
+      let dat = this.state;
+      for(let i = 0;i < keys.length;i++){
+        console.log(this.state);
+        dat.stats.stocks[keys[i]] += decision[keys[i]];
+      }
+      dat.stats.savings -= this.costAfter(decision);
+      this.setState(dat);
+    }
   }
   progress(){
     return () => {
@@ -65,10 +85,9 @@ class App extends React.Component {
   render(){
 
     
-    console.log(this.state);
     return (
       <div className="App">
-        {this.state.seen ? <PopUp market={this.market} stocks={this.state.stats.stocks} toggle={this.togglePop} /> : null}
+        {this.state.seen ? <PopUp costAfter={this.costAfter.bind(this)} doPurchase={this.doPurchase.bind(this)} savings={this.state.stats.savings} market={this.market} stocks={this.state.stats.stocks} toggle={this.togglePop} /> : null}
         <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
         assets={Math.round(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
