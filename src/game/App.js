@@ -70,7 +70,7 @@ class App extends React.Component {
       <div className="App">
         {this.state.seen ? <PopUp market={this.market} stocks={this.state.stats.stocks} toggle={this.togglePop} /> : null}
         <Header name={this.state.name} health={this.state.stats.health} money={this.state.stats.savings} 
-        assets={Math.ceil(this.state.stats.assets * 100) / 100} date={this.state.date}/>
+        assets={Math.round(this.state.stats.assets * 100) / 100} date={this.state.date}/>
         <div className="body">
           <div className="log-window">
             {this.state.dialogue}
