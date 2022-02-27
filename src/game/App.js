@@ -75,7 +75,7 @@ class App extends React.Component {
           <div className="log-window">
             {this.state.dialogue}
           </div>
-          <button className="start-button" onClick={this.progress()}>
+          <button className="btn btn-block btn-primary start-button" onClick={this.progress()}>
             <h1>Progress</h1>  
           </button>
         </div>
