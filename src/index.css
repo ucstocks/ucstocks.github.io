@@ -22,7 +22,7 @@ code {
   width: 100%;
   flex-direction: row;
   justify-content: left;
-  background-color: #FFFD8B;
+  background-color: #06B27E;
 }
 .title-container {
   display: flex;
@@ -41,7 +41,7 @@ code {
 .start-button {
   width: 90%;
   height: 75px;
-  background-color: #F5A4FF;
+  background-color: #DA402F;
   border-radius: 25px;
 
 }
